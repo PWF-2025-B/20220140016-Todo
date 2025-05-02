@@ -81,7 +81,37 @@
                                             </span>
                                         </p>
                                     </td>
-                                    <td class="px-6 py-4"></td>
+                                    <td class="px-6 py-4">
+                                    <div class="flex space-x-3">
+                                            @if ($data->is_admin)
+                                                <form action="{{ route('user.removeadmin', $data) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                            class="text-blue-600 dark:text-blue-400 whitespace-nowrap">
+                                                        Remove Admin
+                                                    </button>
+                                                </form>
+                                            @else
+                                                <form action="{{ route('user.makeadmin', $data) }}" method="Post">
+                                                    @csrf
+                                                    @method('PATCH')
+                                                    <button type="submit"
+                                                            class="text-red-600 dark:text-red-400 whitespace-nowrap">
+                                                        Make Admin
+                                                    </button>
+                                                </form>
+                                            @endif
+                                            <form action="{{ route('user.destroy', $data) }}" method="Post">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="submit"
+                                                        class="bg-red-600 hover:bg-red-700 text-white font-bold py-1 px-3 rounded">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr class="odd:bg-white odd:dark:bg-gray-800 even:bg-gray-50 even:dark:bg-gray-700">

@@ -76,13 +76,13 @@
                                                     ({{ $data->todos->where('is_done', true)->count() }}
                                                 </span> /
                                                 <span class="text-blue-600 dark:text-blue-400">
-                                                    {{ $data->todos->where('is_done', false)->count() }})
+                                                    {{ $data->todos->where('is_done', false)->count() }} )
                                                 </span>
                                             </span>
                                         </p>
                                     </td>
                                     <td class="px-6 py-4">
-                                    <div class="flex space-x-3">
+                                        <div class="flex flex-col space-y-2">
                                             @if ($data->is_admin)
                                                 <form action="{{ route('user.removeadmin', $data) }}" method="Post">
                                                     @csrf
@@ -102,6 +102,7 @@
                                                     </button>
                                                 </form>
                                             @endif
+
                                             <form action="{{ route('user.destroy', $data) }}" method="Post">
                                                 @csrf
                                                 @method('delete')
